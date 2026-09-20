@@ -11,6 +11,8 @@ Pulls movie data from the INF601 Practice Hub API, loads it into a Pandas DataFr
 
 ## Description
 
+confirmation_working.png- This file was a screenshot of the code working/running in my env
+
 This project answers the question: **Is there a relationship between a movie's release year and its rating, broken out by genre?**
 
 The data comes from the Practice Hub's `GET /api/v1/datasets/movies` endpoint, which generates 500 rows of deterministic, randomly-generated practice data with the columns `title, director, year, genre, rating`. The script:
