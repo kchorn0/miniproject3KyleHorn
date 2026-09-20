@@ -70,3 +70,7 @@ print("\nAverage rating by genre:\n", avg_rating_by_genre)
 # Average rating per year and genre
 avg_rating_by_year_genre = movies_df.groupby(["year", "genre"])["rating"].mean().reset_index()
 print("\nAverage rating by year and genre:\n", avg_rating_by_year_genre)
+
+# Create the charts folder if it doesn't already exist
+CHARTS_DIR = "charts"
+os.makedirs(CHARTS_DIR, exist_ok=True)
