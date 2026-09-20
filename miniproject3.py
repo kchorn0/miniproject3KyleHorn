@@ -17,6 +17,18 @@ Requirements and points
 (10) I will check out the main branch. Include a requirements.txt.
 (20) A thorough README.md explaining the project, install, and run steps. Include an ## AI Usage section.
 '''
+
+'''
+Question
+Is there a relationship between year and rating, broken out by genre?
+(Practice Hub /api/v1/datasets/movies: title, director, year, genre, rating)
+
+Planned charts
+1. Scatter of year vs rating, colored by genre.
+2. Line chart of average rating by year, one line per genre.
+3. Bar chart of overall average rating by genre.
+4. Box plot (or histograms) of rating distribution by genre.
+'''
 print("Hello, World!")
 
 
