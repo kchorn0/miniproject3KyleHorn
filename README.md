@@ -148,3 +148,11 @@ Inspiration, code snippets, etc.
 
 * https://practice.fhsucyber.com/docs-guide
 * 
+
+
+## AI Usage
+What AI helped with: I used Claude Code as a pair-programming assistant, working one step at a time rather than having it generate the whole project at once. It scaffolded the basic parts/functions/files I directed it to build — the virtual environment and requirements.txt setup, the requests call structure to the Practice Hub API, and the skeleton for the Pandas groupby() calculations. I reviewed and ran everything it scaffolded before moving to the next step.
+
+What I personally did: I decided on the data source (Practice Hub movies dataset) and posed the research question myself — whether year and genre relate to a movie's rating — and picked that question specifically because it would let me build multiple charts instead of just one. I built out the four Matplotlib charts (scatter, line, bar, and box plot) myself, choosing what each one should show and how it supports the question. I registered for my own Practice Hub API token and set it as an environment variable on my own machine rather than letting the AI handle or see it directly. I ran every version of the script myself in my own terminal, reviewed each chart's PNG output, and confirmed the results (and the "no meaningful relationship" conclusion) made sense before moving on. I directed the pace and scope of the whole project step by step.
+
+What AI did that I changed/modified: AI drafted the basic error handling (checking for missing environment variables and catching failed API requests so the program fails with a readable message instead of a raw traceback), which I reviewed and adjusted. I also modified the comments AI put in the code so they better reflected my own understanding of the code and workflow. AI also drafted the initial README content, which I reviewed and edited myself
