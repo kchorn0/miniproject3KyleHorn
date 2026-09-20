@@ -65,23 +65,32 @@ except requests.exceptions.RequestException as e:
 
 movies_df = pd.DataFrame(movies_data["rows"])
 
+print("=" * 60)
+print("QUESTION: Is there a relationship between year and rating,")
+print("broken out by genre?")
+print("=" * 60)
+
 # Inspect the DataFrame before doing any analysis
+print("\n--- DataFrame overview ---")
 print("Shape (rows, columns):", movies_df.shape)
-print("\nColumn names:", list(movies_df.columns))
-print("\nData types:\n", movies_df.dtypes)
-print("\nSample rows:\n", movies_df.sample(5))
+print("Column names:", list(movies_df.columns))
+print("Data types:\n", movies_df.dtypes)
+print("Sample rows:\n", movies_df.sample(5))
 
 # Data-quality check: missing values and duplicate rows
-print("\nMissing values per column:\n", movies_df.isnull().sum())
-print("\nNumber of duplicate rows:", movies_df.duplicated().sum())
+print("\n--- Data quality check ---")
+print("Missing values per column:\n", movies_df.isnull().sum())
+print("Number of duplicate rows:", movies_df.duplicated().sum())
 
 # Average rating per genre
+print("\n--- Average rating by genre ---")
 avg_rating_by_genre = movies_df.groupby("genre")["rating"].mean()
-print("\nAverage rating by genre:\n", avg_rating_by_genre)
+print(avg_rating_by_genre)
 
 # Average rating per year and genre
+print("\n--- Average rating by year and genre ---")
 avg_rating_by_year_genre = movies_df.groupby(["year", "genre"])["rating"].mean().reset_index()
-print("\nAverage rating by year and genre:\n", avg_rating_by_year_genre)
+print(avg_rating_by_year_genre)
 
 # Create the charts folder if it doesn't already exist
 CHARTS_DIR = "charts"
@@ -135,3 +144,12 @@ plt.xlabel("Genre")
 plt.ylabel("Rating")
 plt.savefig(os.path.join(CHARTS_DIR, "rating_distribution_by_genre.png"))
 plt.close()
+
+print("\n" + "=" * 60)
+print("ANSWER: No meaningful relationship was found. Every genre")
+print("hovers around a similar average rating with a wide, similar")
+print("spread, and the scatter/line charts show noise rather than")
+print("a trend. This is expected since the Practice Hub dataset is")
+print("randomly generated rather than based on real movie ratings.")
+print("=" * 60)
+print(f"\nAll 4 charts saved to the '{CHARTS_DIR}' folder.")
