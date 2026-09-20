@@ -66,3 +66,7 @@ print("\nNumber of duplicate rows:", movies_df.duplicated().sum())
 # Average rating per genre
 avg_rating_by_genre = movies_df.groupby("genre")["rating"].mean()
 print("\nAverage rating by genre:\n", avg_rating_by_genre)
+
+# Average rating per year and genre
+avg_rating_by_year_genre = movies_df.groupby(["year", "genre"])["rating"].mean().reset_index()
+print("\nAverage rating by year and genre:\n", avg_rating_by_year_genre)
