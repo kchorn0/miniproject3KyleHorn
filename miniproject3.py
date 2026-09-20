@@ -31,6 +31,7 @@ Planned charts
 '''
 
 import os
+import sys
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -40,16 +41,27 @@ BASE_URL = os.environ.get("PRACTICE_API_URL")
 # Gets the API token from the computer's environment variables
 TOKEN = os.environ.get("PRACTICE_API_TOKEN")
 
+# Stop early with a clear message if the env vars were never set,
+# instead of failing later with a confusing connection error.
+if not BASE_URL or not TOKEN:
+    print("Missing PRACTICE_API_URL or PRACTICE_API_TOKEN environment variable.")
+    print("Set both in your terminal before running this script.")
+    sys.exit(1)
+
 headers = {"Authorization": f"Bearer {TOKEN}"}
 
 # Pull the movies dataset (title, director, year, genre, rating)
-response = requests.get(
-    f"{BASE_URL}/api/v1/datasets/movies",
-    headers=headers,
-    params={"count": 500},
-)
-response.raise_for_status()
-movies_data = response.json()
+try:
+    response = requests.get(
+        f"{BASE_URL}/api/v1/datasets/movies",
+        headers=headers,
+        params={"count": 500},
+    )
+    response.raise_for_status()
+    movies_data = response.json()
+except requests.exceptions.RequestException as e:
+    print(f"Could not fetch data from the Practice Hub API: {e}")
+    sys.exit(1)
 
 movies_df = pd.DataFrame(movies_data["rows"])
 
