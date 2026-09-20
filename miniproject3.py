@@ -74,3 +74,16 @@ print("\nAverage rating by year and genre:\n", avg_rating_by_year_genre)
 # Create the charts folder if it doesn't already exist
 CHARTS_DIR = "charts"
 os.makedirs(CHARTS_DIR, exist_ok=True)
+
+# Chart 1: scatter of year vs rating, one color per genre
+plt.figure(figsize=(10, 6))
+for genre in movies_df["genre"].unique():
+    genre_subset = movies_df[movies_df["genre"] == genre]
+    plt.scatter(genre_subset["year"], genre_subset["rating"], label=genre, alpha=0.6)
+
+plt.title("Movie Rating vs Year by Genre")
+plt.xlabel("Year")
+plt.ylabel("Rating")
+plt.legend(title="Genre")
+plt.savefig(os.path.join(CHARTS_DIR, "rating_vs_year_by_genre.png"))
+plt.close()
