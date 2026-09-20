@@ -100,3 +100,13 @@ plt.ylabel("Average Rating")
 plt.legend(title="Genre")
 plt.savefig(os.path.join(CHARTS_DIR, "avg_rating_by_year_genre.png"))
 plt.close()
+
+# Chart 3: overall average rating by genre
+plt.figure(figsize=(10, 6))
+plt.bar(avg_rating_by_genre.index, avg_rating_by_genre.values)
+
+plt.title("Overall Average Movie Rating by Genre")
+plt.xlabel("Genre")
+plt.ylabel("Average Rating")
+plt.savefig(os.path.join(CHARTS_DIR, "avg_rating_by_genre.png"))
+plt.close()
