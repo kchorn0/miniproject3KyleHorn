@@ -52,4 +52,17 @@ response.raise_for_status()
 movies_data = response.json()
 
 movies_df = pd.DataFrame(movies_data["rows"])
-print(movies_df.head())
+
+# Inspect the DataFrame before doing any analysis
+print("Shape (rows, columns):", movies_df.shape)
+print("\nColumn names:", list(movies_df.columns))
+print("\nData types:\n", movies_df.dtypes)
+print("\nSample rows:\n", movies_df.sample(5))
+
+# Data-quality check: missing values and duplicate rows
+print("\nMissing values per column:\n", movies_df.isnull().sum())
+print("\nNumber of duplicate rows:", movies_df.duplicated().sum())
+
+# Average rating per genre
+avg_rating_by_genre = movies_df.groupby("genre")["rating"].mean()
+print("\nAverage rating by genre:\n", avg_rating_by_genre)
