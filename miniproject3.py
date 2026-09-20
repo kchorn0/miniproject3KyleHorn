@@ -29,6 +29,27 @@ Planned charts
 3. Bar chart of overall average rating by genre.
 4. Box plot (or histograms) of rating distribution by genre.
 '''
-print("Hello, World!")
 
+import os
+import requests
+import pandas as pd
+import matplotlib.pyplot as plt
 
+# Gets the Practice Hub site address from the computer's environment variables
+BASE_URL = os.environ.get("PRACTICE_API_URL")
+# Gets the API token from the computer's environment variables
+TOKEN = os.environ.get("PRACTICE_API_TOKEN")
+
+headers = {"Authorization": f"Bearer {TOKEN}"}
+
+# Pull the movies dataset (title, director, year, genre, rating)
+response = requests.get(
+    f"{BASE_URL}/api/v1/datasets/movies",
+    headers=headers,
+    params={"count": 500},
+)
+response.raise_for_status()
+movies_data = response.json()
+
+movies_df = pd.DataFrame(movies_data["rows"])
+print(movies_df.head())
