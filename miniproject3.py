@@ -110,3 +110,16 @@ plt.xlabel("Genre")
 plt.ylabel("Average Rating")
 plt.savefig(os.path.join(CHARTS_DIR, "avg_rating_by_genre.png"))
 plt.close()
+
+# Chart 4: distribution of ratings by genre
+genres = movies_df["genre"].unique()
+ratings_by_genre = [movies_df[movies_df["genre"] == genre]["rating"] for genre in genres]
+
+plt.figure(figsize=(10, 6))
+plt.boxplot(ratings_by_genre, tick_labels=genres)
+
+plt.title("Distribution of Movie Ratings by Genre")
+plt.xlabel("Genre")
+plt.ylabel("Rating")
+plt.savefig(os.path.join(CHARTS_DIR, "rating_distribution_by_genre.png"))
+plt.close()
