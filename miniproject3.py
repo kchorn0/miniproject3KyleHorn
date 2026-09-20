@@ -87,3 +87,16 @@ plt.ylabel("Rating")
 plt.legend(title="Genre")
 plt.savefig(os.path.join(CHARTS_DIR, "rating_vs_year_by_genre.png"))
 plt.close()
+
+# Chart 2: average rating by year, one line per genre
+plt.figure(figsize=(10, 6))
+for genre in avg_rating_by_year_genre["genre"].unique():
+    genre_trend = avg_rating_by_year_genre[avg_rating_by_year_genre["genre"] == genre]
+    plt.plot(genre_trend["year"], genre_trend["rating"], marker="o", label=genre)
+
+plt.title("Average Movie Rating by Year and Genre")
+plt.xlabel("Year")
+plt.ylabel("Average Rating")
+plt.legend(title="Genre")
+plt.savefig(os.path.join(CHARTS_DIR, "avg_rating_by_year_genre.png"))
+plt.close()
